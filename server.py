@@ -37,8 +37,16 @@ def status():
 
 @app.route("/send", methods=['POST'])
 def send_message():
-    text = ''
-    name = ''
+    if not isinstance(request.json, dict):
+        return abort(400)
+    
+    text = request.json.get('text')
+    name = request.json.get('name')
+    
+    if not isinstance(text, str) or not isinstance(name, str):
+        return abort(400)
+    if text == '' or name == '':
+        return abort(400)
     db.append({
         'text': text,
         'name': name,
@@ -60,7 +68,7 @@ def get_messages():
     for message in db:
         if message['time'] > after:
             filtered_db.append(message)
-            if len(filtered_db >= 100):
+            if len(filtered_db) >= 100:
                 break
     return {'messages': filtered_db}
 
