@@ -19,7 +19,7 @@ db = [
         'time': time.time()
     }
 ]
-
+online = []
 @app.route("/")
 
 def hello():
@@ -27,12 +27,17 @@ def hello():
 
 @app.route("/status")
 def status():
+    for msg in db:
+        if msg['name'] not in online:
+            online.append(msg['name'])
     return {
         'name': 'post_msg',
         'messages_count': 500,
         'server_time': time.time(),
         'status': True,
-        'time': datetime.now().isoformat()
+        'time': datetime.now().isoformat(),
+        'msg_count': len(db),
+        'user_count': len(online)
     }
 
 @app.route("/send", methods=['POST'])
