@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+#/home/rodion/python_virtual/env/bin/python3
 # Form implementation generated from reading ui file 'messanger.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
@@ -57,3 +57,5 @@ class Ui_Messanger(object):
         self.label.setText(_translate("Messanger", "Messanger"))
         self.lineEdit.setPlaceholderText(_translate("Messanger", "Введите имя"))
         self.label_2.setText(_translate("Messanger", "имя"))
+
+
